@@ -13,7 +13,6 @@ export function encodeTransaction(transaction: Transaction): Buffer {
   // 1. Use fixed-size fields where possible (e.g., 8 bytes for amounts, timestamps)
   // 2. Use length-prefixed strings for variable-length data (id, signatures, public keys)
   // 3. Use compact representations for counts (e.g., 1 byte for number of inputs/outputs if < 256)
-
   throw new Error('Binary encoding not implemented - this is a bonus challenge!');
 }
 

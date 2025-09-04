@@ -22,10 +22,9 @@ export class TransactionValidator {
     // STUDENT ASSIGNMENT: Implement the validation logic above
     // Remove this line and implement the actual validation
 
-    /* 
-    Validacion de Existencia de UTXO. 
-    Explicación:Itero sobre todos los inputs, para cada uno obtengo su UTXO, si es null(no existe) lanza el error adecuado.
-    */
+
+    // Validacion de Existencia de UTXO. 
+
     for (const input of transaction.inputs) {
       const utxo = this.utxoPool.getUTXO(input.utxoId.txId, input.utxoId.outputIndex);
       if (!utxo) {
@@ -33,10 +32,9 @@ export class TransactionValidator {
       }
     }
 
-    /*
-    Validacion de Balance
-    Explicación:Verifico que la suma de los montos de outputs sea igual a la suma de los montos de los UTXO obtenidos con inputs.
-    */
+
+    // Validacion de Balance
+
     let totalOutputAmount = 0;
     let totalInputAmount = 0;
 
@@ -55,11 +53,9 @@ export class TransactionValidator {
       errors.push(createValidationError(VALIDATION_ERRORS.AMOUNT_MISMATCH, `Mismatch between input and output amounts`));
     }
 
-    /* 
-    Validacion de Firma
-    Explicacion: Creo datos de transaccion con la funcion createTransactionDataForSigning_ dada.
-    Para cada input de la transaccion verifico la firma con verify de './utils/crypto'
-    */
+
+    // Validacion de Firma
+
     const transactionData = this.createTransactionDataForSigning_(transaction);
     for (const input of transaction.inputs) {
       const isValid = verify(transactionData, input.signature, input.owner);
@@ -68,10 +64,9 @@ export class TransactionValidator {
       }
     }
 
-    /*
-    Prevencion Doble Gasto
-    Explicacion: Recorro los inputs, si el utxo no esta en el conjunto lo agrego, si ya esta en el conjunto, significa que hay duplicados (tambien se puede hacer con un doble for).
-    */
+
+    // Prevencion Doble Gasto
+
     const seenInputs = new Set();
     for (const input of transaction.inputs) {
       const utxo = this.utxoPool.getUTXO(input.utxoId.txId, input.utxoId.outputIndex);
@@ -82,12 +77,11 @@ export class TransactionValidator {
         seenInputs.add(utxo.id);
       }
     }
-    /* 
-    Rechazar si un output es de cero o negativo
-    Explicación: Para cada output de la transacción se verifica que su monto sea positivo.
-    */
+
+    // Rechazar si un output es de cero o negativo
+
     for (const output of transaction.outputs) {
-      if (output.amount <= 0) {
+      if (output.amount <= 0) { //Lanzo el mismo error para 0 o negativo por como esta hecha la prueba
         errors.push(createValidationError(VALIDATION_ERRORS.NEGATIVE_AMOUNT, `Transaction output cannot be negative`));
       }
 
