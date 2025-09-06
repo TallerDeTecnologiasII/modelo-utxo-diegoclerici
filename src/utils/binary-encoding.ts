@@ -123,6 +123,31 @@ export function decodeTransaction(buffer: Buffer): Transaction {
   const transaction: Transaction = { id, timestamp, inputs, outputs };
   return transaction;
 }
+// Prueba rápida para comparar tamaños de JSON vs binario
+function sizeComparison(transaction: Transaction): void {
+  const jsonString = JSON.stringify(transaction);
+  console.log("JSON: " + Buffer.byteLength(jsonString));
+
+  const binaryBuffer = encodeTransaction(transaction);
+  console.log("Binary: " + Buffer.byteLength(binaryBuffer));
+}
+sizeComparison({
+  id: 'tx123',
+  timestamp: 1625247600,
+  inputs: [
+    {
+      utxoId: { txId: 'utxo1', outputIndex: 0 },
+      owner: 'Alice',
+      signature: 'sig1'
+    }
+  ],
+  outputs: [
+    {
+      amount: 1000,
+      recipient: 'Bob'
+    }
+  ]
+});
 
 /**
  * Compare encoding efficiency between JSON and binary representations

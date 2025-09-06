@@ -26,6 +26,10 @@ Para codificar los datos de manera que luego se tenga la información necesaria 
 
 Para decodificar, uso las funciones auxiliares de lectura de buffer y voy decodificando en el orden que se había codificado, siempre manteniendo la posición del buffer que estoy leyendo para decodificar el siguiente dato. Finalmente con todos los datos se crea la transacción y se devuelve.
 
+Para confirmar el aumento en eficiencia hago una pequeña prueba comparando el tamaño de una transacción en JSON y la misma transacción usando la función hecha para codificar. 
+
+Resultado de prueba: ![Prueba](image.png)
+
 ## Desafíos
 Para la Tarea 1, sobre todo al principio me costó entender el contexto de la función, todo el entorno y las funciones disponibles que tenía, pero la que encontré más difícil fue la Tarea 2, ya que no estoy muy familizarizado con el tema en sentido de código, por lo tanto no conocía las funciones de librería para codificar y decodificar.
 
