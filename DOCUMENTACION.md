@@ -29,6 +29,7 @@ Para decodificar, uso las funciones auxiliares de lectura de buffer y voy decodi
 Para confirmar el aumento en eficiencia hago una pequeña prueba comparando el tamaño de una transacción en JSON y la misma transacción usando la función hecha para codificar. 
 
 Resultado de prueba:
+
  ![Prueba](image.png)
 
 ## Desafíos
