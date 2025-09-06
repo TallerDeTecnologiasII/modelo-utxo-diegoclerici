@@ -22,13 +22,14 @@ Decidí hacer las verificaciones por separado para mantener un orden y que se ve
 ### Tarea 2
 Para esta parte de la tarea usé los métodos de la clase Buffer que me permiten codificar y decodificar datos de una forma específica. Primero creé funciones auxiliares para escribir en un buffer cada dato de la manera en que es sugerida, luego lo mismo para decodificar, con la diferencia de que estas también deben devolver la posición en la que terminaron para poder seguir decodificando.
 
-Para codificar los datos de manera que luego se tenga la información necesaria para decodificar, como es sugerido, a los datos con largos variables se indica su largo como prefijo y para el resto se codifican en un tamaño fijo. También escribimos la cantidad de entradas y salidas, ya que vamos a necesitar saber esa cantidad para poder recorrerlas en la decodificación.
+Para codificar los datos de manera que luego se tenga la información necesaria para decodificar, como es sugerido, a los datos con largos variables se indica su largo como prefijo y para el resto se codifican en un tamaño fijo. También escribo la cantidad de entradas y salidas, ya que voy a necesitar saber esa cantidad para poder recorrerlas en la decodificación.
 
 Para decodificar, uso las funciones auxiliares de lectura de buffer y voy decodificando en el orden que se había codificado, siempre manteniendo la posición del buffer que estoy leyendo para decodificar el siguiente dato. Finalmente con todos los datos se crea la transacción y se devuelve.
 
 Para confirmar el aumento en eficiencia hago una pequeña prueba comparando el tamaño de una transacción en JSON y la misma transacción usando la función hecha para codificar. 
 
-Resultado de prueba: ![Prueba](image.png)
+Resultado de prueba:
+ ![Prueba](image.png)
 
 ## Desafíos
 Para la Tarea 1, sobre todo al principio me costó entender el contexto de la función, todo el entorno y las funciones disponibles que tenía, pero la que encontré más difícil fue la Tarea 2, ya que no estoy muy familizarizado con el tema en sentido de código, por lo tanto no conocía las funciones de librería para codificar y decodificar.
